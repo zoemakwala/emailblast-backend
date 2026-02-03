@@ -49,6 +49,21 @@ APP_URL = os.environ.get('APP_URL', os.environ.get('REACT_APP_BACKEND_URL', 'htt
 # Create the main app
 app = FastAPI(title="EmailBlast - Email Marketing Platform")
 
+from starlette.middleware.cors import CORSMiddleware
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "https://zerocostsites.com",
+        "https://www.zerocostsites.com",
+        "http://localhost:3000",
+        "http://localhost:5173"
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 # Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")
 
